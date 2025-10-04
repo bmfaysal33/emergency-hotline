@@ -41,16 +41,16 @@ let coinNum = parseInt(coinInput.innerText);
 
 function cardCall(cardIndex) {
     coinNum -= 20;
-   
-    if(coinNum < 0){
-        alert('Insufficient balance');
+
+    if (coinNum < 0) {
+        alert('Insufficient coin, minimum 20 coins needed to proceed');
         return;
     }
-    else{
+    else {
 
-         alert('Calling' + ' ' + cards[cardIndex].title + ' ' + cards[cardIndex].num);
-          coinInput.innerText = parseInt(coinNum);
-    
+        alert('Calling' + ' ' + cards[cardIndex].title + ' ' + cards[cardIndex].num);
+        coinInput.innerText = parseInt(coinNum);
+
         const historyContainer = document.getElementById('history-card-container');
         const div = document.createElement('div');
         div.innerHTML = `<div
@@ -61,7 +61,7 @@ function cardCall(cardIndex) {
                     <p class="text-lg">${cards[cardIndex].num}</p>
                   </div>
                   <div class="w-1/4">
-                    <h1>${new Date().toLocaleTimeString()}</h1>
+                    <h1> ${new Date().toLocaleTimeString()} </h1>
                   </div>
                 </div>`;
         historyContainer.appendChild(div);
@@ -150,3 +150,26 @@ document.getElementById('btn-card-8').addEventListener('click', function () {
 document.getElementById('btn-card-9').addEventListener('click', function () {
     cardCall(8);
 });
+
+
+// History section ---- clear button
+
+document.getElementById('btn-clear').addEventListener('click', function () {
+    document.getElementById('history-card-container').innerHTML = '';
+})
+
+
+// All cards Copy alert 
+
+// Copy alert 
+
+    for(let n=1; n<=9; n++){
+        document.getElementById(`btn-copy-${n}`).addEventListener('click', function(){
+            const text = document.getElementById(`num-card-${n}`).innerText;
+            navigator.clipboard.writeText(text);
+            alert('Copied: '+ text )
+        })
+    }
+    
+    
+
