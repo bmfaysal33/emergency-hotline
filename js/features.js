@@ -162,14 +162,26 @@ document.getElementById('btn-clear').addEventListener('click', function () {
 // All cards Copy alert 
 
 // Copy alert 
+let copyNum = 0;
 
-    for(let n=1; n<=9; n++){
-        document.getElementById(`btn-copy-${n}`).addEventListener('click', function(){
-            const text = document.getElementById(`num-card-${n}`).innerText;
-            navigator.clipboard.writeText(text);
-            alert('Copied: '+ text )
-        })
-    }
-    
-    
+for (let n = 1; n <= 9; n++) {
+    document.getElementById(`btn-copy-${n}`).addEventListener('click', function () {
+        const text = document.getElementById(`num-card-${n}`).innerText;
+         
+        // Copy text 
+        navigator.clipboard.writeText(text);
+
+        alert('Copied: ' + text)
+        
+        // copy counting 
+
+        copyNum++;
+        const showCopyNumber = document.getElementById('copy-number');
+        showCopyNumber.innerText = copyNum;
+
+    })
+}
+
+
+
 
